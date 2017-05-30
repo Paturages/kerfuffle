@@ -1,0 +1,64 @@
+{
+  "name": "r-vns-battle-royale",
+  "description": "/r/visualnovels Dies Irae contest entry",
+  "license": "WTFPL",
+  "main": "src/main.jsx",
+  "version": "0.0.1",
+  "homepage": "https://fightthe.pw/battleroyale",
+  "author": "Paturages <c.ingouff@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Paturages/r-vns-battle-royale"
+  },
+  "keywords": [
+    "inferno",
+    "react",
+    "/r/visualnovels",
+    "reddit",
+    "battle royale",
+    "rpg",
+    "visual novels",
+    "weeb shit"
+  ],
+  "maintainers": [
+    {
+      "name": "Paturages",
+      "website": "http://fightthe.pw"
+    }
+  ],
+  "scripts": {
+    "start": "./node_modules/.bin/webpack --config webpack/dev.conf.js --watch",
+    "build": "./node_modules/.bin/webpack --config webpack/build.conf.js"
+  },
+  "dependencies": {
+    "es5-shim": "^4.5.9",
+    "es6-shim": "^0.35.3",
+    "inferno": "^3.3.1",
+    "inferno-component": "^3.3.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-inferno": "^3.2.0",
+    "babel-preset-es2015": "^6.24.1",
+    "browser-sync": "^2.18.12",
+    "browser-sync-webpack-plugin": "^1.1.4",
+    "css-loader": "^0.28.4",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-import-resolver-webpack": "^0.8.1",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-jsx-a11y": "^5.0.3",
+    "eslint-plugin-react": "^7.0.1",
+    "file-loader": "^0.11.1",
+    "html-loader": "^0.4.5",
+    "node-sass": "^4.5.3",
+    "postcss-cssnext": "^2.11.0",
+    "postcss-loader": "^2.0.5",
+    "sass-loader": "^6.0.5",
+    "style-loader": "^0.18.1",
+    "url-loader": "^0.5.8",
+    "webpack": "^2.6.1",
+    "webpack-merge": "^4.1.0"
+  }
+}
