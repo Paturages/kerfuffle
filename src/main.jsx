@@ -1,9 +1,10 @@
 import Inferno from 'inferno';
 import Component from 'inferno-component';
 
-import Background from 'modules/background';
-import Intro from 'modules/intro';
 import Music from 'modules/music';
+
+import Intro from 'modules/intro';
+import Title from 'modules/title';
 
 import './index.html';
 import './style.scss';
@@ -11,7 +12,6 @@ import './style.scss';
 const initialState = {
   turn: 0,
   music: 'intro',
-  background: 'black',
   character: null,
   hp: null,
   mp: null,
@@ -37,8 +37,8 @@ class Main extends Component {
   render() {
     return (<div className="Main">
       <Music name={this.state.music} />
-      <Background name={this.state.background} />
-      {!this.state.turn && <Intro />}
+      {this.state.turn === -1 && <Intro />}
+      {this.state.turn === 0 && <Title />}
     </div>);
   }
 }

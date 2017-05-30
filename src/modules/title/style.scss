@@ -1,0 +1,75 @@
+@keyframes Title__fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.Title {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-size: cover;
+  background-position: center;
+  animation: Title__fade-in 3s ease-in-out forwards;
+  color: #fafafa;
+  
+  &__overlay {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    animation: Title__fade-in 3s ease-in-out 3s forwards;
+    opacity: 0;
+    background: rgba(black, .5);
+  }
+
+  &__title {
+    position: absolute;
+    letter-spacing: .125em;
+    font-weight: bold;
+    z-index: 1;
+    font-size: 5em;
+    top: 1em;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    animation: Title__fade-in 3s ease-in-out 3s forwards;
+    opacity: 0;
+  }
+
+  &__characters-container {
+    position: absolute;
+    z-index: 2;
+    left: 1em;
+    right: 1em;
+    bottom: 1em;
+    padding: 1em;
+    background: rgba(white, .1);
+    animation: Title__fade-in 3s ease-in-out 5s forwards;
+    opacity: 0;
+  }
+
+  &__characters-title {
+    width: 100%;
+    padding: 0 1em 1em;
+    text-align: center;
+  }
+
+  &__characters {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin: auto;
+    padding: 0 3em;
+    max-width: 47em;
+    max-height: calc(100vh - 18em);
+    overflow-y: auto;
+
+    .CharacterTile {
+      margin: .5em;
+    }
+  }
+}
