@@ -1,4 +1,10 @@
+@import 'variables';
+
 .CharacterTile {
+  font-size: 1em;
+  border: none;
+  color: inherit;
+  font-family: $font-family;
   position: relative;
   width: 12.5em;
   height: 12.5em;
@@ -10,25 +16,51 @@
 
   &:hover {
     opacity: 1;
+
+    .CharacterTile__name, .CharacterTile__source {
+      display: block;
+    }
+    
+    .CharacterTile__stats {
+      display: flex;
+    }
   }
 
   &__name {
+    display: none;
     cursor: pointer;
     text-shadow: -1px 0 #151515, 0 1px #151515, 1px 0 #151515, 0 -1px #151515;
     position: absolute;
-    bottom: 1.5em;
+    bottom: 3em;
     left: .5em;
     font-weight: bold;
   }
 
   &__source {
+    display: none;
     cursor: pointer;
     text-shadow: -1px 0 #151515, 0 1px #151515, 1px 0 #151515, 0 -1px #151515;
     position: absolute;
-    bottom: .5em;
+    bottom: 2em;
     right: .125em;
     padding-right: .375em;
     font-style: italic;
     white-space: nowrap;
+  }
+
+  &__stats {
+    display: none;
+    font-size: .7em;
+    opacity: .9;
+    font-weight: bold;
+    line-height: 1.125em;
+    cursor: pointer;
+    text-shadow: -1px 0 #151515, 0 1px #151515, 1px 0 #151515, 0 -1px #151515;
+    position: absolute;
+    bottom: .5em;
+    left: .5em;
+    right: .5em;
+    flex-direction: row;
+    justify-content: space-between;
   }
 }

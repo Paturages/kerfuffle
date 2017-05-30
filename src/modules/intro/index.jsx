@@ -12,8 +12,8 @@ const dialog = [
 
 const nextDialog = (instance) => {
   instance.setState({ transition: true, clickable: false });
-  setTimeout(() => instance.setState({ dialogIndex: instance.state.dialogIndex + 1, transition: false }), 3000);
-  setTimeout(() => instance.setState({ clickable: true }), 6000);
+  setTimeout(() => instance.setState({ dialogIndex: instance.state.dialogIndex + 1, transition: false }), 2000);
+  setTimeout(() => instance.setState({ clickable: true }), 5000);
 };
 
 export default class Intro extends Component {

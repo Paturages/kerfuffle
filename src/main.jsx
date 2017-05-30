@@ -20,6 +20,9 @@ const initialState = {
   weapon: null,
 };
 
+const endIntro = instance => instance.setState({ turn: 0 });
+const selectCharacter = (instance, character) => instance.setState({ turn: 1, character });
+
 class Main extends Component {
   constructor(props) {
     super(props);
@@ -33,12 +36,16 @@ class Main extends Component {
     //   this.state.turn &&
     //   window.localStorage.setItem('state', JSON.stringify(this.state),
     // ), 10000);
+
+    this.endIntro = () => endIntro(this);
+    this.selectCharacter = character => selectCharacter(this, character);
   }
   render() {
     return (<div className="Main">
       <Music name={this.state.music} />
-      {this.state.turn === -1 && <Intro />}
-      {this.state.turn === 0 && <Title />}
+      {this.state.turn === -1 && <Intro onEnd={this.endIntro} />}
+      {this.state.turn === 0 && <Title onCharacterSelect={this.selectCharacter} />}
+      {this.state.turn === 1 && <div style={{ color: 'white' }}>{JSON.stringify(this.state)}</div>}
     </div>);
   }
 }

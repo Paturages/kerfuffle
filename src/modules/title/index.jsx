@@ -12,20 +12,66 @@ import rintarou from 'assets/sprites/rintarou--normal.png';
 import saya from 'assets/sprites/saya--normal.png';
 import tomoyo from 'assets/sprites/tomoyo--normal.png';
 
+import automodStats from 'modules/character/automod';
+import battlerStats from 'modules/character/battler';
+import makinaStats from 'modules/character/makina';
+import meiyaStats from 'modules/character/meiya';
+import nagitoStats from 'modules/character/nagito';
+import ranceStats from 'modules/character/rance';
+import rintarouStats from 'modules/character/rintarou';
+import sayaStats from 'modules/character/saya';
+import tomoyoStats from 'modules/character/tomoyo';
+
 import CharacterTile from './CharacterTile';
 
 import './style.scss';
 
 const characters = [
-  { id: 'automod', name: 'Automod-chan', source: '/r/visualnovels', picture: automod },
-  { id: 'battler', name: 'Ushiromiya Battler', source: 'Umineko no Naku Koro Ni', picture: battler },
-  { id: 'makina', name: 'Irisu Makina', source: 'Grisaia trilogy', picture: makina },
-  { id: 'meiya', name: 'Mitsurugi Meiya', source: 'Muv-Luv trilogy', picture: meiya },
-  { id: 'nagito', name: 'Komaeda Nagito', source: 'Super Danganronpa 2', picture: nagito },
-  { id: 'rance', name: 'Rance', source: 'Rance series', picture: rance },
-  { id: 'rintarou', name: 'Okabe Rintarou', source: 'Steins;Gate', picture: rintarou },
-  { id: 'saya', name: 'Saya', source: 'Saya no Uta', picture: saya },
-  { id: 'tomoyo', name: 'Sakagami Tomoyo', source: 'Clannad', picture: tomoyo },
+  { id: 'automod',
+    name: 'Automod-chan',
+    source: '/r/visualnovels',
+    stats: automodStats.getStats(),
+    picture: automod },
+  { id: 'battler',
+    name: 'Ushiromiya Battler',
+    source: 'Umineko no Naku Koro Ni',
+    stats: battlerStats.getStats(),
+    picture: battler },
+  { id: 'makina',
+    name: 'Irisu Makina',
+    source: 'Grisaia trilogy',
+    stats: makinaStats.getStats(),
+    picture: makina },
+  { id: 'meiya',
+    name: 'Mitsurugi Meiya',
+    source: 'Muv-Luv trilogy',
+    stats: meiyaStats.getStats(),
+    picture: meiya },
+  { id: 'nagito',
+    name: 'Komaeda Nagito',
+    source: 'Super Danganronpa 2',
+    stats: nagitoStats.getStats(),
+    picture: nagito },
+  { id: 'rance',
+    name: 'Rance',
+    source: 'Rance series',
+    stats: ranceStats.getStats(),
+    picture: rance },
+  { id: 'rintarou',
+    name: 'Okabe Rintarou',
+    source: 'Steins;Gate',
+    stats: rintarouStats.getStats(),
+    picture: rintarou },
+  { id: 'saya',
+    name: 'Saya',
+    source: 'Saya no Uta',
+    stats: sayaStats.getStats(),
+    picture: saya },
+  { id: 'tomoyo',
+    name: 'Sakagami Tomoyo',
+    source: 'Clannad',
+    stats: tomoyoStats.getStats(),
+    picture: tomoyo },
 ];
 
 export default props => <div className="Title" style={{ backgroundImage: `url(${bgForest})` }}>
