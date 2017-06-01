@@ -5,20 +5,58 @@ import Music from 'modules/music';
 
 import Intro from 'modules/intro';
 import Title from 'modules/title';
+import Activity from 'modules/activity';
+import Character from 'modules/character';
 
 import './index.html';
 import './style.scss';
 
 const initialState = {
-  turn: 0,
+  turn: 1,
+  background: 'forest',
   music: 'intro',
-  character: null,
-  hp: null,
-  mp: null,
-  ult: null,
-  location: null,
-  weapon: null,
+  character: 'automod',
+  lastAction: {
+    action: null,
+    character: null,
+  },
+  status: {
+    automod: Character.automod.getBaseStats(),
+    battler: Character.battler.getBaseStats(),
+    makina: Character.makina.getBaseStats(),
+    meiya: Character.meiya.getBaseStats(),
+    nagito: Character.nagito.getBaseStats(),
+    rance: Character.rance.getBaseStats(),
+    rintarou: Character.rintarou.getBaseStats(),
+    saya: Character.saya.getBaseStats(),
+    tomoyo: Character.tomoyo.getBaseStats(),
+  },
+  map: new Array(16).fill(new Array(16).fill('')).map(x => x.slice().map(() => ({}))),
 };
+
+// Random walls
+new Array(30)
+  .fill('')
+  .map(() => [(Math.random() * 16) >> 0, (Math.random() * 16) >> 0]) // eslint-disable-line no-bitwise
+  .forEach(([x, y]) => (initialState.map[x][y].type = 'wall'))
+;
+
+// Random character positions
+const positions = [];
+['automod', 'battler', 'makina', 'meiya', 'nagito', 'rance', 'rintarou', 'saya', 'tomoyo']
+  .forEach(function placeCharacter(character) {
+    const x = Math.random() * 16 >> 0; // eslint-disable-line no-bitwise
+    const y = Math.random() * 16 >> 0; // eslint-disable-line no-bitwise
+    if (
+      initialState.map[x][y].type === 'wall' ||
+      positions.find(([cx, cy]) => Math.abs(cx - x) + Math.abs(cy - y) < 5)
+    ) placeCharacter(character);
+    else {
+      positions.push([x, y]);
+      initialState.status[character].position = [x, y];
+    }
+  })
+;
 
 const endIntro = instance => instance.setState({ turn: 0 });
 const selectCharacter = (instance, character) => instance.setState({ turn: 1, character });
@@ -45,7 +83,7 @@ class Main extends Component {
       <Music name={this.state.music} />
       {this.state.turn === -1 && <Intro onEnd={this.endIntro} />}
       {this.state.turn === 0 && <Title onCharacterSelect={this.selectCharacter} />}
-      {this.state.turn === 1 && <div style={{ color: 'white' }}>{JSON.stringify(this.state)}</div>}
+      {this.state.turn === 1 && <Activity meta={this.state} />}
     </div>);
   }
 }

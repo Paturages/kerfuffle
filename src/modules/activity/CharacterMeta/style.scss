@@ -1,0 +1,56 @@
+.CharacterMeta {
+  position: fixed;
+  bottom: 1em;
+  left: -12em;
+  z-index: 2;
+  color: #151515;
+  overflow: visible;
+
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+
+  &__picture {
+    z-index: 3;
+    font-size: 2em;
+    width: 20em;
+    height: 10em;
+    background-repeat: no-repeat;
+    background-position: center top;
+    opacity: .9;
+  }
+
+  &__stats {
+    z-index: 2;
+    position: relative;
+    left: -10em;
+    top: -.25em;
+  }
+
+  &__stat {
+    position: relative;
+    height: 1.375em;
+    width: 10em;
+    padding: 0 .5em;
+    background: rgba(#151515, .25);
+
+    &-filler {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      background: rgba(#EF5350, .75);
+    }
+
+    &-value {
+      font-weight: bold;
+      position: absolute;
+      right: .5em;
+      top: 0;
+    }
+
+    &:not(:first-child) {
+      margin-top: .25em;
+    }
+  }
+}

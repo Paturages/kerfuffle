@@ -2,25 +2,15 @@ import Inferno from 'inferno';
 
 import bgForest from 'assets/background/forest.jpg';
 
-import automod from 'assets/sprites/automod--normal.png';
-import battler from 'assets/sprites/battler--normal.png';
-import makina from 'assets/sprites/makina--normal.png';
-import meiya from 'assets/sprites/meiya--normal.png';
-import nagito from 'assets/sprites/nagito--normal.png';
-import rance from 'assets/sprites/rance--normal.png';
-import rintarou from 'assets/sprites/rintarou--normal.png';
-import saya from 'assets/sprites/saya--normal.png';
-import tomoyo from 'assets/sprites/tomoyo--normal.png';
-
-import automodStats from 'modules/character/automod';
-import battlerStats from 'modules/character/battler';
-import makinaStats from 'modules/character/makina';
-import meiyaStats from 'modules/character/meiya';
-import nagitoStats from 'modules/character/nagito';
-import ranceStats from 'modules/character/rance';
-import rintarouStats from 'modules/character/rintarou';
-import sayaStats from 'modules/character/saya';
-import tomoyoStats from 'modules/character/tomoyo';
+import Automod from 'modules/character/automod';
+import Battler from 'modules/character/battler';
+import Makina from 'modules/character/makina';
+import Meiya from 'modules/character/meiya';
+import Nagito from 'modules/character/nagito';
+import Rance from 'modules/character/rance';
+import Rintarou from 'modules/character/rintarou';
+import Saya from 'modules/character/saya';
+import Tomoyo from 'modules/character/tomoyo';
 
 import CharacterTile from './CharacterTile';
 
@@ -30,48 +20,48 @@ const characters = [
   { id: 'automod',
     name: 'Automod-chan',
     source: '/r/visualnovels',
-    stats: automodStats.getStats(),
-    picture: automod },
+    stats: Automod.getBaseStats(),
+    picture: Automod.getPicture() },
   { id: 'battler',
     name: 'Ushiromiya Battler',
     source: 'Umineko no Naku Koro Ni',
-    stats: battlerStats.getStats(),
-    picture: battler },
+    stats: Battler.getBaseStats(),
+    picture: Battler.getPicture() },
   { id: 'makina',
     name: 'Irisu Makina',
     source: 'Grisaia trilogy',
-    stats: makinaStats.getStats(),
-    picture: makina },
+    stats: Makina.getBaseStats(),
+    picture: Makina.getPicture() },
   { id: 'meiya',
     name: 'Mitsurugi Meiya',
     source: 'Muv-Luv trilogy',
-    stats: meiyaStats.getStats(),
-    picture: meiya },
+    stats: Meiya.getBaseStats(),
+    picture: Meiya.getPicture() },
   { id: 'nagito',
     name: 'Komaeda Nagito',
     source: 'Super Danganronpa 2',
-    stats: nagitoStats.getStats(),
-    picture: nagito },
+    stats: Nagito.getBaseStats(),
+    picture: Nagito.getPicture() },
   { id: 'rance',
     name: 'Rance',
     source: 'Rance series',
-    stats: ranceStats.getStats(),
-    picture: rance },
+    stats: Rance.getBaseStats(),
+    picture: Rance.getPicture() },
   { id: 'rintarou',
     name: 'Okabe Rintarou',
     source: 'Steins;Gate',
-    stats: rintarouStats.getStats(),
-    picture: rintarou },
+    stats: Rintarou.getBaseStats(),
+    picture: Rintarou.getPicture() },
   { id: 'saya',
     name: 'Saya',
     source: 'Saya no Uta',
-    stats: sayaStats.getStats(),
-    picture: saya },
+    stats: Saya.getBaseStats(),
+    picture: Saya.getPicture() },
   { id: 'tomoyo',
     name: 'Sakagami Tomoyo',
     source: 'Clannad',
-    stats: tomoyoStats.getStats(),
-    picture: tomoyo },
+    stats: Tomoyo.getBaseStats(),
+    picture: Tomoyo.getPicture() },
 ];
 
 export default props => <div className="Title" style={{ backgroundImage: `url(${bgForest})` }}>

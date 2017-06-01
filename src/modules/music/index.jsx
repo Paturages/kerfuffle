@@ -17,6 +17,7 @@ export default class Music extends Component {
     this.setState({ intro: !nonFragmentedMap[nextProps.name] });
   }
   render() {
+    if (process.env.NODE_ENV === 'dev') return <div className="Music" />;
     return (<div className="Music">
       {/* The Music component is not visible, no point in adding tracks. */}
       {/* eslint-disable */}

@@ -1,0 +1,48 @@
+.Map {
+  position: absolute;
+  overflow: visible;
+  bottom: -45em;
+  left: 25vw;
+
+  perspective: 150px;
+
+  &__row {
+    width: 96em;
+    white-space: nowrap;
+    &:not(:first-child) {
+      margin-top: 1em;
+    }
+  }
+  &__cell {
+    position: relative;
+    display: inline-block;
+    width: 5em;
+    height: 5em;
+    background: rgba(#fafafa, .25);
+    &:not(:first-child) {
+      margin-left: 1em;
+    }
+    &:hover:not(.Map__cell--wall) {
+      background: rgba(#4CAF50, .75);
+    }
+    &--wall {
+      background: none;
+    }
+    &--character {
+      background: rgba(#fafafa, .75);
+    }
+    &--focus {
+      background: rgba(#81D4FA, .75);
+    }
+  }
+  &__character {
+    z-index: 1;
+    position: absolute;
+    bottom: 2.5em;
+    left: 0;
+    width: 20em;
+    height: 10em;
+    background-position: center top;
+    background-repeat: no-repeat;
+  }
+}
