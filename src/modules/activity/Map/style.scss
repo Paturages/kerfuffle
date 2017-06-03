@@ -87,7 +87,7 @@
 
   &:hover {
     .Map__character {
-      z-index: -1;
+      z-index: -1 !important;
       opacity: .75;
     }
     .Map__cell.Map__cell--reachable:not(.Map__cell--character) {

@@ -4,9 +4,15 @@ import './style.scss';
 
 export default props => (<div className="Combat">
   <button className="Combat__attack" disabled={!props.canAttack} onClick={() => props.canAttack && props.onAttackSelect()}>
-    <span>Basic attack</span>
+    <span>{props.isAttacking ? 'Cancel attack' : 'Basic attack'}</span>
   </button>
-  <button className="Combat__pass" onClick={() => props.onTurnEnd()}>
+  <button
+    className="Combat__pass"
+    onClick={($event) => {
+      setTimeout(() => $event.target.blur());
+      props.onTurnEnd();
+    }}
+  >
     <span>End turn</span>
   </button>
   <button className="Combat__ability" disabled={!props.canAttack}>

@@ -27,17 +27,23 @@
   }
 
   &__title {
+    text-shadow: -.05em 0 #151515, 0 .05em #151515, .05em 0 #151515, 0 -.05em #151515;
     position: absolute;
     letter-spacing: .125em;
     font-weight: bold;
     z-index: 1;
     font-size: 5em;
-    top: 1em;
+    top: .5em;
     left: 0;
     width: 100%;
     text-align: center;
     animation: Title__fade-in 0.1s ease-in-out 0.1s forwards;
     opacity: 0;
+    
+
+    @media (max-width: 985px) {
+      font-size: 2.75em;
+    }
   }
 
   &__characters-container {

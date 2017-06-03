@@ -63,6 +63,7 @@ export default (props) => {
         <div
           className="Map__character"
           style={Object.assign({
+            zIndex: y + 5,
             transform: `translate3d(${y * 6}em, ${((x - 15) * 6.25)}em, 0) skewX(20deg) scaleY(2)`,
           }, Character[c].getBustStyle())}
         >

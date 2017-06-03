@@ -18,13 +18,25 @@
     background-repeat: no-repeat;
     background-position: center top;
     opacity: .9;
+
+    @media (max-width: 900px) {
+      display: none;
+    }
   }
 
   &__vitals {
     z-index: 2;
-    position: fixed;
-    bottom: 6em;
-    left: 18em;
+    position: absolute;
+    bottom: 5em;
+    left: 31em;
+
+    @media (max-width: 900px) {
+      left: 13em;
+      bottom: 8.5em;
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+    }
   }
 
   &__vital {
@@ -58,6 +70,13 @@
     &:not(:first-child) {
       margin-top: .25em;
     }
+
+    @media (max-width: 900px) {
+      width: 3.5em;
+      &-name {
+        font-size: .6em;
+      }
+    }
   }
 
   &__hp .CharacterMeta__vital-filler {
@@ -72,14 +91,20 @@
 
   &__stats {
     z-index: 2;
-    position: fixed;
-    bottom: 1.5em;
-    left: 18em;
+    position: absolute;
+    bottom: .5em;
+    left: 31em;
     width: 10em;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: baseline;
+
+    @media (max-width: 900px) {
+      bottom: 8.5em;
+      left: 23.5em;
+      width: 7.5em;
+    }
   }
 
   &__stat {
@@ -104,6 +129,11 @@
       left: 0;
       right: 0;
       text-align: center;
+
+      @media (max-width: 900px) {
+        top: 0;
+        bottom: auto;
+      }
     }
 
     &-value {
@@ -113,6 +143,17 @@
       left: 0;
       right: 0;
       text-align: center;
+
+      @media (max-width: 900px) {
+        font-size: .6em;
+        bottom: 0;
+        top: auto;
+      }
+    }
+
+    @media (max-width: 900px) {
+      height: 1.375em;
+      width: 1.5em;
     }
   }
 }

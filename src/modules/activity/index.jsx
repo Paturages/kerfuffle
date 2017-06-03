@@ -22,7 +22,12 @@ export default (props) => {
       /* focus={} */
     />
     <CharacterMeta character={currentCharacter} status={props.meta.status[currentCharacter]} />
-    <Combat canAttack={props.meta.canAttack} onAttackSelect={props.onAttackSelect} onTurnEnd={props.onTurnEnd} />
+    <Combat
+      isAttacking={!!props.meta.attackRange}
+      canAttack={props.meta.canAttack}
+      onAttackSelect={props.onAttackSelect}
+      onTurnEnd={props.onTurnEnd}
+    />
     <Interface />
   </div>);
 }

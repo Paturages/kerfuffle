@@ -5,4 +5,25 @@
   left: 0;
   right: 0;
   overflow: hidden;
+
+  @media (min-width: 1057px) {
+    .CharacterMeta, .Combat {
+      transform: translateX(calc(50vw - 528px));
+    }
+  }
+
+  @media (max-width: 900px) {
+    .CharacterMeta, .Combat {
+      transform: translateX(calc(50vw - 165px));
+    }
+    .Combat {
+      left: 1em;
+      bottom: 2em;
+      font-size: .7em;
+    }
+    .Map {
+      font-size: .6em;
+      left: 0;
+    }
+  }
 }
