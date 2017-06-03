@@ -1,6 +1,3 @@
-import Inferno from 'inferno';
-import Component from 'inferno-component';
-
 import pictureNormal from 'assets/sprites/automod--normal.png';
 
 const baseStats = {
@@ -19,23 +16,22 @@ const bustStyle = {
   left: '-9em',
 };
 
-const stats = Object.assign({}, baseStats);
+const getMeta = () => ({
+  id: 'automod',
+  name: 'Automod-chan',
+  source: '/r/visualnovels',
+});
+const getPicture = () => pictureNormal;
+const getBustStyle = () => bustStyle;
+const getBaseStats = () => Object.assign({}, baseStats);
+const getOpeningDialog = () => (
+  'I will protect the purity and the sanity of the /r/visualnovels sidebar!'
+);
 
-export default class Automod extends Component {
-  static getPicture() {
-    return pictureNormal;
-  }
-  static getBustStyle() {
-    return bustStyle;
-  }
-  static getBaseStats() {
-    return Object.assign({}, baseStats);
-  }
-  constructor(props) {
-    super(props);
-    if (props.stats) Object.assign(stats, props.stats);
-  }
-  render() {
-    return (<div className="Automod" />);
-  }
-}
+export default {
+  getMeta,
+  getPicture,
+  getBustStyle,
+  getBaseStats,
+  getOpeningDialog,
+};

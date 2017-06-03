@@ -1,6 +1,3 @@
-import Inferno from 'inferno';
-import Component from 'inferno-component';
-
 import pictureNormal from 'assets/sprites/saya--normal.png';
 
 const baseStats = {
@@ -18,23 +15,20 @@ const bustStyle = {
   left: '-10em',
 };
 
-const stats = Object.assign({}, baseStats);
+const getMeta = () => ({
+  id: 'saya',
+  name: 'Saya',
+  source: 'Saya no Uta',
+});
+const getPicture = () => pictureNormal;
+const getBustStyle = () => bustStyle;
+const getBaseStats = () => Object.assign({}, baseStats);
+const getOpeningDialog = () => 'If I take over the sidebar, will people be kind to me?';
 
-export default class Saya extends Component {
-  static getPicture() {
-    return pictureNormal;
-  }
-  static getBustStyle() {
-    return bustStyle;
-  }
-  static getBaseStats() {
-    return Object.assign({}, baseStats);
-  }
-  constructor(props) {
-    super(props);
-    if (props.stats) Object.assign(stats, props.stats);
-  }
-  render() {
-    return (<div className="Saya" />);
-  }
-}
+export default {
+  getMeta,
+  getPicture,
+  getBustStyle,
+  getBaseStats,
+  getOpeningDialog,
+};

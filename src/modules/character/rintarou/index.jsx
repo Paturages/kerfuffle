@@ -1,6 +1,3 @@
-import Inferno from 'inferno';
-import Component from 'inferno-component';
-
 import pictureNormal from 'assets/sprites/rintarou--normal.png';
 
 const baseStats = {
@@ -18,23 +15,20 @@ const bustStyle = {
   left: '-9em',
 };
 
-const stats = Object.assign({}, baseStats);
+const getMeta = () => ({
+  id: 'rintarou',
+  name: 'Okabe Rintarou',
+  source: 'Steins;Gate',
+});
+const getPicture = () => pictureNormal;
+const getBustStyle = () => bustStyle;
+const getBaseStats = () => Object.assign({}, baseStats);
+const getOpeningDialog = () => "FUAHAHAHAHA! Are you telling me to seize the sidebar? If this is what we must do to reach the Steins Gate. I'll get back to you. El. Psy. Kongroo.";
 
-export default class Rintarou extends Component {
-  static getPicture() {
-    return pictureNormal;
-  }
-  static getBustStyle() {
-    return bustStyle;
-  }
-  static getBaseStats() {
-    return Object.assign({}, baseStats);
-  }
-  constructor(props) {
-    super(props);
-    if (props.stats) Object.assign(stats, props.stats);
-  }
-  render() {
-    return (<div className="Rintarou" />);
-  }
-}
+export default {
+  getMeta,
+  getPicture,
+  getBustStyle,
+  getBaseStats,
+  getOpeningDialog,
+};

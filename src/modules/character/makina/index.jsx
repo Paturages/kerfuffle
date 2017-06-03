@@ -1,6 +1,3 @@
-import Inferno from 'inferno';
-import Component from 'inferno-component';
-
 import pictureNormal from 'assets/sprites/makina--normal.png';
 // import pictureSideStep from 'assets/sprites/makina--side-step.png';
 
@@ -19,23 +16,20 @@ const bustStyle = {
   left: '-10em',
 };
 
-const stats = Object.assign({}, baseStats);
+const getMeta = () => ({
+  id: 'makina',
+  name: 'Irisu Makina',
+  source: 'Grisaia trilogy',
+});
+const getPicture = () => pictureNormal;
+const getBustStyle = () => bustStyle;
+const getBaseStats = () => Object.assign({}, baseStats);
+const getOpeningDialog = () => "I'm gonna get this tasty sidebar for daddy!";
 
-export default class Makina extends Component {
-  static getPicture() {
-    return pictureNormal;
-  }
-  static getBustStyle() {
-    return bustStyle;
-  }
-  static getBaseStats() {
-    return Object.assign({}, baseStats);
-  }
-  constructor(props) {
-    super(props);
-    if (props.stats) Object.assign(stats, props.stats);
-  }
-  render() {
-    return (<div className="Makina" />);
-  }
-}
+export default {
+  getMeta,
+  getPicture,
+  getBustStyle,
+  getBaseStats,
+  getOpeningDialog,
+};

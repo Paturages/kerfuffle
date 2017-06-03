@@ -11,4 +11,42 @@
   color: $color--dialog;
 
   padding: 1em;
+
+  &__character {
+    position: absolute;
+    bottom: 0;
+    font-size: 2em;
+    width: 20em;
+    height: 10em;
+    background-repeat: no-repeat;
+    background-position: center top;
+    transform: translateX(calc(50vw - 528px + 3em));
+
+    @media (max-width: 1057px) {
+      transform: translateX(3em);
+    }
+
+    @media (max-width: 500px) {
+      font-size: 1.2em;
+    }
+  }
+
+  &__text {
+    z-index: 3;
+    position: absolute;
+    top: 1em;
+    bottom: 1em;
+    left: 15em;
+    right: 4em;
+    transform: translateX(calc(50vw - 528px + 3em));
+
+    @media (max-width: 1057px) {
+      transform: translateX(3em);
+    }
+
+    @media (max-width: 500px) {
+      left: 4em;
+      text-shadow: 1px 1px 1px #fafafa;
+    }
+  }
 }

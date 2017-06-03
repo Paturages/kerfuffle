@@ -1,6 +1,3 @@
-import Inferno from 'inferno';
-import Component from 'inferno-component';
-
 import pictureNormal from 'assets/sprites/meiya--normal.png';
 
 const baseStats = {
@@ -18,23 +15,20 @@ const bustStyle = {
   left: '-12em',
 };
 
-const stats = Object.assign({}, baseStats);
+const getMeta = () => ({
+  id: 'meiya',
+  name: 'Mitsurugi Meiya',
+  source: 'Muv-Luv trilogy',
+});
+const getPicture = () => pictureNormal;
+const getBustStyle = () => bustStyle;
+const getBaseStats = () => Object.assign({}, baseStats);
+const getOpeningDialog = () => 'I must reclaim this sidebar... for mankind... for humanity...';
 
-export default class Meiya extends Component {
-  static getPicture() {
-    return pictureNormal;
-  }
-  static getBustStyle() {
-    return bustStyle;
-  }
-  static getBaseStats() {
-    return Object.assign({}, baseStats);
-  }
-  constructor(props) {
-    super(props);
-    if (props.stats) Object.assign(stats, props.stats);
-  }
-  render() {
-    return (<div className="Meiya" />);
-  }
-}
+export default {
+  getMeta,
+  getPicture,
+  getBustStyle,
+  getBaseStats,
+  getOpeningDialog,
+};

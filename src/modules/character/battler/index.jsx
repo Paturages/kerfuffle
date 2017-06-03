@@ -1,10 +1,11 @@
 import Inferno from 'inferno';
-import Component from 'inferno-component';
 
 import pictureNormal from 'assets/sprites/battler--normal.png';
 // import pictureAttacking from 'assets/sprites/battler--attacking.png';
 // import pictureWeak from 'assets/sprites/battler--weak.png';
 // import pictureUlt from 'assets/sprites/battler--ult.png';
+
+import './style.scss';
 
 const baseStats = {
   atk: 2,
@@ -21,23 +22,24 @@ const bustStyle = {
   left: '-10em',
 };
 
-const stats = Object.assign({}, baseStats);
+const getMeta = () => ({
+  id: 'battler',
+  name: 'Ushiromiya Battler',
+  source: 'Umineko no Naku Koro Ni',
+});
+const getPicture = () => pictureNormal;
+const getBustStyle = () => bustStyle;
+const getBaseStats = () => Object.assign({}, baseStats);
+const getOpeningDialog = () => (
+  <div className="Battler__blue-truth">
+    <i>Umineko no Naku Koro ni</i> is without a doubt, hands down the best visual novel there is! That there could be any better visual novel is a Devil's Proof! The sidebar is ours!!
+  </div>
+);
 
-export default class Battler extends Component {
-  static getPicture() {
-    return pictureNormal;
-  }
-  static getBustStyle() {
-    return bustStyle;
-  }
-  static getBaseStats() {
-    return Object.assign({}, baseStats);
-  }
-  constructor(props) {
-    super(props);
-    if (props.stats) Object.assign(stats, props.stats);
-  }
-  render() {
-    return (<div className="Battler" />);
-  }
-}
+export default {
+  getMeta,
+  getPicture,
+  getBustStyle,
+  getBaseStats,
+  getOpeningDialog,
+};

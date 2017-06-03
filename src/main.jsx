@@ -1,11 +1,13 @@
 import Inferno from 'inferno';
 import Component from 'inferno-component';
 
-import Music from 'modules/music';
-
 import Intro from 'modules/intro';
 import Title from 'modules/title';
 import Activity from 'modules/activity';
+
+import Character from 'modules/character';
+import Music from 'modules/music';
+import Dialog from 'modules/dialog';
 
 import initGame from 'repository/init';
 import Combat from 'repository/combat';
@@ -14,11 +16,12 @@ import './index.html';
 import './style.scss';
 
 const initialState = {
-  turn: -1,
+  turn: 0,
+  character: 'automod',
 };
 
 const endIntro = self => self.setState({ turn: 0 });
-const selectCharacter = (self, character) => self.setState({ turn: 1, character });
+const selectCharacter = (self, character) => self.setState({ character });
 
 class Main extends Component {
   constructor(props) {
@@ -40,14 +43,22 @@ class Main extends Component {
     this.selectAttack = () => Combat.selectAttack(this);
     this.basicAttack = (x, y) => Combat.basicAttack(this, x, y);
     this.endTurn = () => Combat.endTurn(this);
+    this.initGame = () => initGame(this);
 
-    setTimeout(() => initGame(this));
+    // setTimeout(() => initGame(this));
   }
   render() {
     return (<div className="Main">
       <Music name={this.state.music} />
       {this.state.turn === -1 && <Intro onEnd={this.endIntro} />}
       {this.state.turn === 0 && <Title onCharacterSelect={this.selectCharacter} />}
+      {this.state.turn === 0 && this.state.character &&
+        <div role="button" tabIndex="0" onClick={this.initGame} className="Main__character-select">
+          <Dialog character={this.state.character}>
+            {Character[this.state.character].getOpeningDialog()}
+          </Dialog>
+        </div>
+      }
       {this.state.turn > 0 && <Activity
         meta={this.state}
         onMove={this.move}
