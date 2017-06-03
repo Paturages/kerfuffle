@@ -6,87 +6,19 @@ import Music from 'modules/music';
 import Intro from 'modules/intro';
 import Title from 'modules/title';
 import Activity from 'modules/activity';
-import Character from 'modules/character';
+
+import initGame from 'repository/init';
+import Combat from 'repository/combat';
 
 import './index.html';
 import './style.scss';
 
 const initialState = {
-  turn: 1,
-  background: 'forest',
-  music: 'intro',
-  character: 'automod',
-  lastAction: {
-    action: null,
-    character: null,
-  },
-  status: {
-    automod: Character.automod.getBaseStats(),
-    battler: Character.battler.getBaseStats(),
-    makina: Character.makina.getBaseStats(),
-    meiya: Character.meiya.getBaseStats(),
-    nagito: Character.nagito.getBaseStats(),
-    rance: Character.rance.getBaseStats(),
-    rintarou: Character.rintarou.getBaseStats(),
-    saya: Character.saya.getBaseStats(),
-    tomoyo: Character.tomoyo.getBaseStats(),
-  },
-  map: new Array(16).fill(new Array(16).fill('')).map(x => x.slice().map(() => ({}))),
+  turn: -1,
 };
 
-// Random walls
-// new Array(30)
-//   .fill('')
-//   .map(() => [(Math.random() * 16) >> 0, (Math.random() * 16) >> 0]) // eslint-disable-line no-bitwise
-//   .forEach(([x, y]) => (initialState.map[x][y].type = 'wall'))
-// ;
-
-// Random character positions
-const positions = [];
-['automod', 'battler', 'makina', 'meiya', 'nagito', 'rance', 'rintarou', 'saya', 'tomoyo']
-  .forEach(function placeCharacter(character) {
-    const x = Math.random() * 16 >> 0; // eslint-disable-line no-bitwise
-    const y = Math.random() * 16 >> 0; // eslint-disable-line no-bitwise
-    if (
-      initialState.map[x][y].type === 'wall' ||
-      positions.find(([cx, cy]) => Math.abs(cx - x) + Math.abs(cy - y) < 5)
-    ) placeCharacter(character);
-    else {
-      positions.push([x, y]);
-      initialState.status[character].position = [x, y];
-    }
-  })
-;
-
-// Init character vitals
-['automod', 'battler', 'makina', 'meiya', 'nagito', 'rance', 'rintarou', 'saya', 'tomoyo']
-  .forEach(character => (
-    initialState.status[character] = Object.assign({
-      mp: initialState.status[character].int,
-      moves: initialState.status[character].spd / 2 >> 0,
-    }, initialState.status[character])
-  ))
-;
-
-const endIntro = instance => instance.setState({ turn: 0 });
-const selectCharacter = (instance, character) => instance.setState({ turn: 1, character });
-const move = function move(instance, x, y) {
-  const s = instance.state;
-  const c = s.character;
-  const [cx, cy] = s.status[c].position;
-  if (cx === x && cy === y) return;
-  instance.setState({
-    status: Object.assign(s.status, {
-      [c]: Object.assign(s.status[c], {
-        moves: s.status[c].moves - 1,
-        position: (Math.abs(cx - x) < Math.abs(cy - y)) ?
-          [cx, cy < y ? cy + 1 : cy - 1] :
-          [cx < x ? cx + 1 : cx - 1, cy],
-      }),
-    }),
-  });
-  setTimeout(() => move(instance, x, y), 500);
-};
+const endIntro = self => self.setState({ turn: 0 });
+const selectCharacter = (self, character) => self.setState({ turn: 1, character });
 
 class Main extends Component {
   constructor(props) {
@@ -104,16 +36,24 @@ class Main extends Component {
 
     this.endIntro = () => endIntro(this);
     this.selectCharacter = character => selectCharacter(this, character);
-    this.move = (x, y) => move(this, x, y);
+    this.move = (x, y) => Combat.move(this, x, y);
+    this.selectAttack = () => Combat.selectAttack(this);
+    this.basicAttack = (x, y) => Combat.basicAttack(this, x, y);
+    this.endTurn = () => Combat.endTurn(this);
+
+    setTimeout(() => initGame(this));
   }
   render() {
     return (<div className="Main">
       <Music name={this.state.music} />
       {this.state.turn === -1 && <Intro onEnd={this.endIntro} />}
       {this.state.turn === 0 && <Title onCharacterSelect={this.selectCharacter} />}
-      {this.state.turn === 1 && <Activity
+      {this.state.turn > 0 && <Activity
         meta={this.state}
         onMove={this.move}
+        onAttackSelect={this.selectAttack}
+        onAttack={this.basicAttack}
+        onTurnEnd={this.endTurn}
       />}
     </div>);
   }

@@ -24,7 +24,7 @@
     z-index: 2;
     position: fixed;
     bottom: 6em;
-    left: 16em;
+    left: 18em;
   }
 
   &__vital {
@@ -74,7 +74,7 @@
     z-index: 2;
     position: fixed;
     bottom: 1.5em;
-    left: 16em;
+    left: 18em;
     width: 10em;
     display: flex;
     flex-direction: row;
@@ -93,7 +93,7 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: rgba(#2196F3, .75);
+      background: rgba(#009688, .75);
       transition: height .5s ease-in-out;
     }
 

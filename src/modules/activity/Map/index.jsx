@@ -7,7 +7,7 @@ import './style.scss';
 export default (props) => {
   const [characterX, characterY] = props.characters[props.currentCharacter].position;
   const [focusX, focusY] = props.focus || props.characters[props.currentCharacter].position;
-  const moves = props.characters[props.currentCharacter].moves;
+  const moves = props.attackRange || props.characters[props.currentCharacter].moves;
   const characterPositions = Object.values(props.characters).reduce((obj, { position: p }) => Object.assign(obj, { [`${p[0]}.${p[1]}`]: 1 }), {});
   return (<div
     className="Map"
@@ -23,6 +23,17 @@ export default (props) => {
       {row.map(
         (cell, y) => {
           const isReachable = Math.abs(x - characterX) + Math.abs(y - characterY) <= moves;
+          const onClick = props.attackRange ? (
+            isReachable &&
+            cell.type !== 'wall' &&
+            (x !== characterX || y !== characterY) &&
+            (() => props.onAttack(x, y))
+          ) : (
+            isReachable &&
+            cell.type !== 'wall' &&
+            !characterPositions[`${x}.${y}`] &&
+            (() => props.onMove(x, y))
+          );
           return (
             <div
               role="button"
@@ -34,14 +45,11 @@ export default (props) => {
               } ${
                 x === characterX && y === characterY ? 'Map__cell--self' : ''
               } ${
-                isReachable ? 'Map__cell--reachable' : ''
+                isReachable && !props.attackRange ? 'Map__cell--reachable' : ''
+              } ${
+                isReachable && props.attackRange && (x !== characterX || y !== characterY) ? 'Map__cell--attackable' : ''
               }`}
-              onClick={
-                isReachable &&
-                cell.type !== 'wall' &&
-                !characterPositions[`${x}.${y}`] &&
-                (() => props.onMove(x, y))
-              }
+              onClick={onClick}
             />
           );
         },
@@ -50,13 +58,18 @@ export default (props) => {
     {Object.keys(props.characters).map((c) => {
       const character = props.characters[c];
       const [x, y] = character.position;
+      const baseStats = Character[c].getBaseStats();
       return (
         <div
           className="Map__character"
           style={Object.assign({
             transform: `translate3d(${y * 6}em, ${((x - 15) * 6.25)}em, 0) skewX(20deg) scaleY(2)`,
           }, Character[c].getBustStyle())}
-        />
+        >
+          <div className="Map__character-hp">
+            <div className="Map__character-hp-fill" style={{ width: `${8 * (character.hp / baseStats.hp)}em` }} />
+          </div>
+        </div>
       );
     })}
   </div>);

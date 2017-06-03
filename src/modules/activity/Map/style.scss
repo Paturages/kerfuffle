@@ -26,13 +26,16 @@
       background: none;
     }
     &--character {
-      background: rgba(#fafafa, .75) !important;
+      background: rgba(#fff, .6) !important;
     }
     &--self {
       background: rgba(#81D4FA, .75) !important;
     }
-    .Map__cell.Map__cell--reachable:not(.Map__cell--wall):focus {
-      background: rgba(#4CAF50, .5);
+    &--reachable:not(.Map__cell--self) {
+      background: rgba(#EF9A9A, .375) !important;
+    }
+    &--attackable {
+      background: rgba(#F44336, .25) !important;
     }
   }
   &__row:nth-child(odd) {
@@ -62,6 +65,24 @@
     background-position: center top;
     background-repeat: no-repeat;
     transition: transform .5s ease-in-out;
+
+    &-hp {
+      position: absolute;
+      top: -1em;
+      left: 5em;
+      width: 8em;
+      height: .5em;
+      background: rgba(#fafafa, .75);
+
+      &-fill {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        background: rgba(#F44336, .75);
+        transition: width .5s ease-in-out;
+      }
+    }
   }
 
   &:hover {
@@ -69,11 +90,18 @@
       z-index: -1;
       opacity: .75;
     }
-    .Map__cell.Map__cell--reachable:not(.Map__cell--wall) {
+    .Map__cell.Map__cell--reachable:not(.Map__cell--character) {
       cursor: pointer;
-      background: rgba(#4CAF50, .5);
+      background: rgba(#4CAF50, .5) !important;
       &:hover {
-        background: rgba(#4CAF50, .9);
+        background: rgba(#4CAF50, .9) !important;
+      }
+    }
+    .Map__cell.Map__cell--attackable {
+      cursor: pointer;
+      background: rgba(#F44336, .5) !important;
+      &:hover {
+        background: rgba(#F44336, .9) !important;
       }
     }
   }
