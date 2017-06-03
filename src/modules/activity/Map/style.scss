@@ -5,6 +5,7 @@
   left: 25vw;
 
   perspective: 150px;
+  transition: transform .5s ease-in-out;
 
   &__row {
     width: 96em;
@@ -18,31 +19,62 @@
     display: inline-block;
     width: 5em;
     height: 5em;
-    background: rgba(#fafafa, .25);
     &:not(:first-child) {
       margin-left: 1em;
-    }
-    &:hover:not(.Map__cell--wall) {
-      background: rgba(#4CAF50, .75);
     }
     &--wall {
       background: none;
     }
     &--character {
-      background: rgba(#fafafa, .75);
+      background: rgba(#fafafa, .75) !important;
     }
-    &--focus {
-      background: rgba(#81D4FA, .75);
+    &--self {
+      background: rgba(#81D4FA, .75) !important;
+    }
+    .Map__cell.Map__cell--reachable:not(.Map__cell--wall):focus {
+      background: rgba(#4CAF50, .5);
     }
   }
+  &__row:nth-child(odd) {
+    .Map__cell:nth-child(odd) {
+      background: rgba(#fafafa, .25);
+    }
+    .Map__cell:nth-child(even) {
+      background: rgba(#afafaf, .25);
+    }
+  }
+  &__row:nth-child(even) {
+    .Map__cell:nth-child(odd) {
+      background: rgba(#afafaf, .25);
+    }
+    .Map__cell:nth-child(even) {
+      background: rgba(#fafafa, .25);
+    }
+  }
+
   &__character {
     z-index: 1;
     position: absolute;
-    bottom: 2.5em;
+    bottom: 6em;
     left: 0;
-    width: 20em;
+    width: 18em;
     height: 10em;
     background-position: center top;
     background-repeat: no-repeat;
+    transition: transform .5s ease-in-out;
+  }
+
+  &:hover {
+    .Map__character {
+      z-index: -1;
+      opacity: .75;
+    }
+    .Map__cell.Map__cell--reachable:not(.Map__cell--wall) {
+      cursor: pointer;
+      background: rgba(#4CAF50, .5);
+      &:hover {
+        background: rgba(#4CAF50, .9);
+      }
+    }
   }
 }

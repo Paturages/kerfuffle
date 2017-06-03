@@ -35,11 +35,11 @@ const initialState = {
 };
 
 // Random walls
-new Array(30)
-  .fill('')
-  .map(() => [(Math.random() * 16) >> 0, (Math.random() * 16) >> 0]) // eslint-disable-line no-bitwise
-  .forEach(([x, y]) => (initialState.map[x][y].type = 'wall'))
-;
+// new Array(30)
+//   .fill('')
+//   .map(() => [(Math.random() * 16) >> 0, (Math.random() * 16) >> 0]) // eslint-disable-line no-bitwise
+//   .forEach(([x, y]) => (initialState.map[x][y].type = 'wall'))
+// ;
 
 // Random character positions
 const positions = [];
@@ -58,8 +58,35 @@ const positions = [];
   })
 ;
 
+// Init character vitals
+['automod', 'battler', 'makina', 'meiya', 'nagito', 'rance', 'rintarou', 'saya', 'tomoyo']
+  .forEach(character => (
+    initialState.status[character] = Object.assign({
+      mp: initialState.status[character].int,
+      moves: initialState.status[character].spd / 2 >> 0,
+    }, initialState.status[character])
+  ))
+;
+
 const endIntro = instance => instance.setState({ turn: 0 });
 const selectCharacter = (instance, character) => instance.setState({ turn: 1, character });
+const move = function move(instance, x, y) {
+  const s = instance.state;
+  const c = s.character;
+  const [cx, cy] = s.status[c].position;
+  if (cx === x && cy === y) return;
+  instance.setState({
+    status: Object.assign(s.status, {
+      [c]: Object.assign(s.status[c], {
+        moves: s.status[c].moves - 1,
+        position: (Math.abs(cx - x) < Math.abs(cy - y)) ?
+          [cx, cy < y ? cy + 1 : cy - 1] :
+          [cx < x ? cx + 1 : cx - 1, cy],
+      }),
+    }),
+  });
+  setTimeout(() => move(instance, x, y), 500);
+};
 
 class Main extends Component {
   constructor(props) {
@@ -77,13 +104,17 @@ class Main extends Component {
 
     this.endIntro = () => endIntro(this);
     this.selectCharacter = character => selectCharacter(this, character);
+    this.move = (x, y) => move(this, x, y);
   }
   render() {
     return (<div className="Main">
       <Music name={this.state.music} />
       {this.state.turn === -1 && <Intro onEnd={this.endIntro} />}
       {this.state.turn === 0 && <Title onCharacterSelect={this.selectCharacter} />}
-      {this.state.turn === 1 && <Activity meta={this.state} />}
+      {this.state.turn === 1 && <Activity
+        meta={this.state}
+        onMove={this.move}
+      />}
     </div>);
   }
 }
