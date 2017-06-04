@@ -12,14 +12,15 @@ That *Dies Irae* /r/visualnovels contest entry.
 ### Important
 
 * Add abilities, with range and effects
-* Add activity dialogs
+* Add ultimate abilities
+* Add ability/ultimate dialogs
 * Add music
-* Add ultimate counter, ultimate abilities, with music change on launch
-* Add attack animation, ability animation, ultimate animation
+* Add music change on ultimate
 * Add basic AI
 
 ### Worthy
 
+* Add attack/ability/ultimate custom animations
 * Make music loop seamlessly
 * Add SFX
 * Add short voice lines

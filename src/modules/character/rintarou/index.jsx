@@ -1,4 +1,5 @@
 import pictureNormal from 'assets/sprites/rintarou--normal.png';
+import abilities from 'modules/attack/rintarou';
 
 const baseStats = {
   atk: 3,
@@ -6,7 +7,7 @@ const baseStats = {
   spd: 3,
   dex: 7,
   int: 8,
-  hp: 125,
+  hp: 250,
 };
 
 const bustStyle = {
@@ -24,6 +25,7 @@ const getPicture = () => pictureNormal;
 const getBustStyle = () => bustStyle;
 const getBaseStats = () => Object.assign({}, baseStats);
 const getOpeningDialog = () => "FUAHAHAHAHA! Are you telling me to seize the sidebar? If this is what we must do to reach the Steins Gate. I'll get back to you. El. Psy. Kongroo.";
+const getAbilities = () => abilities;
 
 export default {
   getMeta,
@@ -31,4 +33,5 @@ export default {
   getBustStyle,
   getBaseStats,
   getOpeningDialog,
+  getAbilities,
 };

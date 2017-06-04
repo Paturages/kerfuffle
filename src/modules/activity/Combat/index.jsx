@@ -15,20 +15,11 @@ export default props => (<div className="Combat">
   >
     <span>End turn</span>
   </button>
-  <button className="Combat__ability" disabled={!props.canAttack}>
-    <div className="Combat__ability-title">Ability 1 with extended name</div>
-    <div className="Combat__ability-description">Does what Ability 1 does best: that does mean something, right</div>
-  </button>
-  <button className="Combat__ability" disabled={!props.canAttack}>
-    <div className="Combat__ability-title">Ability 2</div>
-    <div className="Combat__ability-description">Does what Ability 2 does best: that does mean something, right</div>
-  </button>
-  <button className="Combat__ability" disabled={!props.canAttack}>
-    <div className="Combat__ability-title">Ability 3</div>
-    <div className="Combat__ability-description">Does what Ability 3 does best: that does mean something, right</div>
-  </button>
-  <button className="Combat__ability--ultimate" disabled={!props.canAttack}>
-    <div className="Combat__ability-title">Ultimate</div>
-    <div className="Combat__ability-description">Does what Ultimate does best: that does mean something, right</div>
-  </button>
+  {props.abilities.map(a => <button className={`Combat__ability ${a.ult ? 'Combat__ability--ultimate' : ''}`} onClick={() => props.onAttackSelect(a)} disabled={!props.canAttack || (a.ult && props.ult < a.ult)}>
+    {a.ult && <div className="Combat__ability-ult-meter" style={{ width: `${100 * (props.ult / a.ult)}%` }} />}
+    {(!a.ult || props.ult >= a.ult) && <div className="Combat__ability-title">{a.name}{a.ult ? '' : ` [${a.mp} MP]`}</div>}
+    {(!a.ult || props.ult >= a.ult) && <div className="Combat__ability-description">{a.description}</div>}
+    {a.ult && props.ult < a.ult && <div className="Combat__ability-title">Ultimate ability</div>}
+    {a.ult && props.ult < a.ult && <div className="Combat__ability-description">Not available yet. Fight to build up the ultimate meter!</div>}
+  </button>)}
 </div>);

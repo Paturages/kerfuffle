@@ -1,4 +1,5 @@
 import pictureNormal from 'assets/sprites/rance--normal.png';
+import abilities from 'modules/attack/rance';
 
 const baseStats = {
   atk: 7,
@@ -6,7 +7,7 @@ const baseStats = {
   spd: 4,
   dex: 5,
   int: 2,
-  hp: 125,
+  hp: 250,
 };
 
 const bustStyle = {
@@ -24,6 +25,7 @@ const getPicture = () => pictureNormal;
 const getBustStyle = () => bustStyle;
 const getBaseStats = () => Object.assign({}, baseStats);
 const getOpeningDialog = () => "The name of this super cool guy is Rance. I'm a hero who'll one day conquer the entire subreddit and create a huge harem.";
+const getAbilities = () => abilities;
 
 export default {
   getMeta,
@@ -31,4 +33,5 @@ export default {
   getBustStyle,
   getBaseStats,
   getOpeningDialog,
+  getAbilities,
 };

@@ -1,4 +1,5 @@
 import pictureNormal from 'assets/sprites/nagito--normal.png';
+import abilities from 'modules/attack/nagito';
 
 const baseStats = {
   atk: 3,
@@ -6,7 +7,7 @@ const baseStats = {
   spd: 4,
   dex: 5,
   int: 10,
-  hp: 125,
+  hp: 250,
 };
 
 const bustStyle = {
@@ -25,6 +26,7 @@ const getPicture = () => pictureNormal;
 const getBustStyle = () => bustStyle;
 const getBaseStats = () => Object.assign({}, baseStats);
 const getOpeningDialog = () => 'Oh, the Sidebar! Such a great symbol of hope, a true showcase of the wonders of humanity!';
+const getAbilities = () => abilities;
 
 export default {
   getMeta,
@@ -32,4 +34,5 @@ export default {
   getBustStyle,
   getBaseStats,
   getOpeningDialog,
+  getAbilities,
 };

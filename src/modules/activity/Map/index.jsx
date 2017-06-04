@@ -19,6 +19,15 @@ export default (props) => {
       }em, 0)`,
     }}
   >
+    <div
+      className="Map__particle"
+      style={{
+        left: `${((focusY + Math.random()) * 6) - 3}em`,
+        top: `${(focusX * 6.25)}em`,
+      }}
+    >
+      {props.particle}
+    </div>
     {props.map.map((row, x) => (<div className="Map__row">
       {row.map(
         (cell, y) => {

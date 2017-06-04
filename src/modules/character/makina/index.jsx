@@ -1,5 +1,6 @@
 import pictureNormal from 'assets/sprites/makina--normal.png';
 // import pictureSideStep from 'assets/sprites/makina--side-step.png';
+import abilities from 'modules/attack/makina';
 
 const baseStats = {
   atk: 5,
@@ -7,7 +8,7 @@ const baseStats = {
   spd: 9,
   dex: 8,
   int: 3,
-  hp: 90,
+  hp: 180,
 };
 
 const bustStyle = {
@@ -25,6 +26,7 @@ const getPicture = () => pictureNormal;
 const getBustStyle = () => bustStyle;
 const getBaseStats = () => Object.assign({}, baseStats);
 const getOpeningDialog = () => "I'm gonna get this tasty sidebar for daddy!";
+const getAbilities = () => abilities;
 
 export default {
   getMeta,
@@ -32,4 +34,5 @@ export default {
   getBustStyle,
   getBaseStats,
   getOpeningDialog,
+  getAbilities,
 };

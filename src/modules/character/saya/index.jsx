@@ -1,4 +1,5 @@
 import pictureNormal from 'assets/sprites/saya--normal.png';
+import abilities from 'modules/attack/saya';
 
 const baseStats = {
   atk: 3,
@@ -6,7 +7,7 @@ const baseStats = {
   spd: 2,
   dex: 3,
   int: 7,
-  hp: 150,
+  hp: 300,
 };
 
 const bustStyle = {
@@ -24,6 +25,7 @@ const getPicture = () => pictureNormal;
 const getBustStyle = () => bustStyle;
 const getBaseStats = () => Object.assign({}, baseStats);
 const getOpeningDialog = () => 'If I take over the sidebar, will people be kind to me?';
+const getAbilities = () => abilities;
 
 export default {
   getMeta,
@@ -31,4 +33,5 @@ export default {
   getBustStyle,
   getBaseStats,
   getOpeningDialog,
+  getAbilities,
 };

@@ -1,3 +1,4 @@
+import Inferno from 'inferno';
 import Character from 'modules/character';
 
 const characterIds = Object.keys(Character);
@@ -16,31 +17,43 @@ const move = function move(self, x, y) {
     }),
   });
 };
-const selectAttack = self => self.setState({
-  attackRange: self.state.attackRange ? null : 1,
+const selectAttack = (self, attack) => self.setState({
+  attackRange: !attack && self.state.attackRange ? null : (
+    attack ? attack.range : 1
+  ),
 });
 const basicAttack = (self, x, y) => {
-  const characterId = characterIds.find((c) => {
+  const toId = characterIds.find((c) => {
     const [cx, cy] = self.state.status[c].position;
     return cx === x && cy === y;
   });
-  if (characterId) {
-    const from = self.state.status[self.state.order[self.state.turn % 9]];
-    const to = self.state.status[characterId];
+  if (toId) {
+    const fromId = self.state.order[self.state.turn % 9];
+    const from = self.state.status[fromId];
+    const to = self.state.status[toId];
+    const damage = (5 + (from.atk * 3)) - (to.def * 2);
     self.setState({
       canAttack: false,
       attackRange: null,
+      focus: to.position,
+      particle: <div className="Damage Damage--physical">{damage}</div>,
       status: Object.assign(self.state.status, {
-        [characterId]: Object.assign(to, {
-          hp: to.hp - from.atk,
+        [toId]: Object.assign(to, {
+          hp: to.hp - damage,
+        }),
+        [fromId]: Object.assign(from, {
+          ult: from.ult + damage,
         }),
       }),
     });
+    setTimeout(() => self.setState({ focus: null, particle: null }), 1000);
   }
 };
 const endTurn = (self) => {
   const character = self.state.order[self.state.turn % 9];
+  const background = Math.random() < 0.1 ? ['forest', 'mountain', 'lake'][Math.random() * 3 >> 0] : self.state.background;
   self.setState({
+    background,
     turn: self.state.turn + 1,
     canAttack: true,
     status: Object.assign(self.state.status, {

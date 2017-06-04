@@ -1,3 +1,4 @@
+import abilities from 'modules/attack/automod';
 import pictureNormal from 'assets/sprites/automod--normal.png';
 
 const baseStats = {
@@ -6,7 +7,7 @@ const baseStats = {
   spd: 5,
   dex: 5,
   int: 8,
-  hp: 100,
+  hp: 200,
 };
 
 const bustStyle = {
@@ -25,8 +26,9 @@ const getPicture = () => pictureNormal;
 const getBustStyle = () => bustStyle;
 const getBaseStats = () => Object.assign({}, baseStats);
 const getOpeningDialog = () => (
-  'I will protect the purity and the sanity of the /r/visualnovels sidebar!'
+  "I will protect the sidebar for Senpai's sake!"
 );
+const getAbilities = () => abilities;
 
 export default {
   getMeta,
@@ -34,4 +36,5 @@ export default {
   getBustStyle,
   getBaseStats,
   getOpeningDialog,
+  getAbilities,
 };

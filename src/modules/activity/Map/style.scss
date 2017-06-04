@@ -7,6 +7,12 @@
   perspective: 150px;
   transition: transform .5s ease-in-out;
 
+  &__particle {
+    z-index: 1000;
+    position: absolute;
+    transform: skewX(20deg) scaleY(2);
+  }
+
   &__row {
     width: 96em;
     white-space: nowrap;
@@ -104,5 +110,27 @@
         background: rgba(#F44336, .9) !important;
       }
     }
+  }
+}
+
+@keyframes Damage__fade {
+  0% { opacity: 0; transform: translate3d(0, -2.5em, 0); }
+  20% { opacity: 1; transform: translate3d(0, -1.25em, 0); }
+  80% { opacity: 1; transform: translate3d(0, -1.25em, 0); }
+  100% { opacity: 0; transform: translate3d(0, 0, 0) scale(0); }
+}
+
+.Damage {
+  font-size: 3em;
+  font-weight: bold;
+  color: #fafafa;
+  animation: Damage__fade 1s ease-in-out forwards;
+
+  &--physical {
+    text-shadow: .1em .1em .1em #F44336;
+  }
+
+  &--magical {
+    text-shadow: .1em .1em .1em #2196F3;
   }
 }

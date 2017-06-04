@@ -1,4 +1,5 @@
 import Inferno from 'inferno';
+import abilities from 'modules/attack/battler';
 
 import pictureNormal from 'assets/sprites/battler--normal.png';
 // import pictureAttacking from 'assets/sprites/battler--attacking.png';
@@ -13,7 +14,7 @@ const baseStats = {
   spd: 3,
   dex: 5,
   int: 10,
-  hp: 100,
+  hp: 200,
 };
 
 const bustStyle = {
@@ -35,6 +36,7 @@ const getOpeningDialog = () => (
     <i>Umineko no Naku Koro ni</i> is without a doubt, hands down the best visual novel there is! That there could be any better visual novel is a Devil's Proof! The sidebar is ours!!
   </div>
 );
+const getAbilities = () => abilities;
 
 export default {
   getMeta,
@@ -42,4 +44,5 @@ export default {
   getBustStyle,
   getBaseStats,
   getOpeningDialog,
+  getAbilities,
 };

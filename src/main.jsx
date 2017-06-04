@@ -20,6 +20,7 @@ const initialState = {
   character: 'automod',
 };
 
+// const pick = (obj, ...props) => Object.assign({}, ...props.map(p => ({ [p]: obj[p] })));
 const endIntro = self => self.setState({ turn: 0 });
 const selectCharacter = (self, character) => self.setState({ character });
 
@@ -34,18 +35,18 @@ class Main extends Component {
     // window.setInterval(() =>
     //   this.state &&
     //   this.state.turn &&
-    //   window.localStorage.setItem('state', JSON.stringify(this.state),
+    //   window.localStorage.setItem('state', JSON.stringify(pick(this.state, 'turn', 'background', 'music', 'character', 'canAttack', 'status', 'map', 'order')),
     // ), 10000);
 
     this.endIntro = () => endIntro(this);
     this.selectCharacter = character => selectCharacter(this, character);
     this.move = (x, y) => Combat.move(this, x, y);
-    this.selectAttack = () => Combat.selectAttack(this);
+    this.selectAttack = attack => Combat.selectAttack(this, attack);
     this.basicAttack = (x, y) => Combat.basicAttack(this, x, y);
     this.endTurn = () => Combat.endTurn(this);
     this.initGame = () => initGame(this);
 
-    // setTimeout(() => initGame(this));
+    setTimeout(() => initGame(this));
   }
   render() {
     return (<div className="Main">

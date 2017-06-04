@@ -40,6 +40,7 @@ export default (self) => {
     initialState.status[character] = Object.assign({
       mp: initialState.status[character].int * 10,
       moves: initialState.status[character].spd / 2 >> 0,
+      ult: 0,
     }, initialState.status[character])
   ));
 
@@ -49,6 +50,7 @@ export default (self) => {
     order.push(order.splice(Math.random() * 9 >> 0, 1)[0]);
   }
   initialState.order = order;
+  // initialState.order = ['automod', 'automod'];
 
   self.setState(Object.assign(self.state, initialState));
 };
