@@ -9,7 +9,7 @@ export default [
     name: 'Red Truth',
     mp: 4,
     range: 5,
-    description: 'The truth hurts! Ranged magic attack, inflicts -1 DEF',
+    description: 'The truth hurts! Ranged magic attack, inflicts -1 DEF for 2 turns.',
     do: redTruth,
   },
   {
@@ -17,7 +17,7 @@ export default [
     name: 'Blue Truth',
     mp: 6,
     range: 5,
-    description: 'Your truth is no match for me! Drains 2 SPD from foe',
+    description: 'Your truth is no match for me! Drains 2 SPD from foe for the next turn.',
     do: blueTruth,
   },
   {
@@ -25,7 +25,7 @@ export default [
     name: 'Endless Nine',
     mp: 5,
     self: true,
-    description: 'His magical resistance is off the charts! Nullifies next received ability',
+    description: 'His magical resistance is off the charts! Nullifies next received magic attack.',
     do: endlessNine,
   },
   {

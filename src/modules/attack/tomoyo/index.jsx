@@ -25,7 +25,7 @@ export default [
     name: 'Reputation',
     mp: 3,
     self: true,
-    description: "Gang Slayer, Studen Council President... There's many reasons to respect Sakagami Tomoyo. +1 DEF, +1 INT for 3 turns.",
+    description: "There are many reasons to respect Sakagami Tomoyo. +1 DEF, +1 INT for 3 turns.",
     do: reputation,
   },
   {

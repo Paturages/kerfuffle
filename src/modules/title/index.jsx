@@ -19,7 +19,7 @@ export default props => <div className="Title" style={{ backgroundImage: `url(${
   </div>
   <div className="Title__characters-container">
     <div className="Title__characters-title">
-      Please choose a character
+      {"(I didn't have time to implement an AI so you have to play everyone by yourself, sorry :<)"}
     </div>
     <div className="Title__characters">
       {characters.map(c => <CharacterTile character={c} onClick={() => props.onCharacterSelect(c.id)} />)}

@@ -4,7 +4,7 @@ import abilities from 'modules/attack/meiya';
 const baseStats = {
   atk: 6,
   def: 5,
-  spd: 5,
+  spd: 7,
   dex: 6,
   int: 6,
   hp: 250,

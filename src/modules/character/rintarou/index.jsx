@@ -2,11 +2,11 @@ import pictureNormal from 'assets/sprites/rintarou--normal.png';
 import abilities from 'modules/attack/rintarou';
 
 const baseStats = {
-  atk: 3,
-  def: 3,
-  spd: 3,
-  dex: 7,
-  int: 8,
+  atk: 4,
+  def: 4,
+  spd: 4,
+  dex: 6,
+  int: 6,
   hp: 250,
 };
 

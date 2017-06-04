@@ -4,7 +4,7 @@ import abilities from 'modules/attack/tomoyo';
 const baseStats = {
   atk: 8,
   def: 4,
-  spd: 7,
+  spd: 6,
   dex: 3,
   int: 3,
   hp: 200,

@@ -15,7 +15,7 @@ export default [
   {
     id: 'intimidation',
     name: 'Intimidation',
-    mp: 3,
+    mp: 4,
     range: 3,
     description: "Saya's real appearance has been known to inflict insanity to humans. Inflicts -1 INT, -1 DEF, -1 SPD for 2 turns.",
     do: intimidation,
@@ -24,7 +24,7 @@ export default [
     id: 'brain',
     name: 'Brain manipulation',
     mp: 6,
-    range: 3,
+    range: 2,
     description: 'Lets humans see Saya as a little girl, to the detriment of the rest of the world. -2 SPD, -1 INT, -1 ATK for 2 turns',
     do: brain,
   },
@@ -33,7 +33,7 @@ export default [
     id: 'cell',
     name: 'Cell reconstruction',
     range: 1,
-    description: 'A tedious process that transforms a human into a being similar to Saya. The foe will inherit Saya\'s abilities and reduced stats.',
+    description: 'A tedious process that transforms a human into a being similar to Saya. The foe will inherit Saya\'s abilities and reduced stats for 3 turns.',
     do: cell,
   },
 ];

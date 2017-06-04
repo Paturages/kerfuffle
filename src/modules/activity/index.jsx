@@ -23,13 +23,14 @@ export default (props) => {
       attackRange={props.meta.attackRange}
       onMove={props.onMove}
       onAttack={props.onAttack}
-      /* focus={} */
     />
     <CharacterMeta character={currentCharacter} status={props.meta.status[currentCharacter]} />
     <Combat
       abilities={Character[currentCharacter].getAbilities()}
+      disabledAbilities={props.meta.status[currentCharacter].effects.filter(e => e.id === 'disable')}
       ult={props.meta.status[currentCharacter].ult}
-      isAttacking={!!props.meta.attackRange}
+      mp={props.meta.status[currentCharacter].mp}
+      isAttacking={props.meta.attackRange != null}
       canAttack={props.meta.canAttack}
       onAttackSelect={props.onAttackSelect}
       onTurnEnd={props.onTurnEnd}

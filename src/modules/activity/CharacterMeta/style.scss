@@ -10,6 +10,31 @@
   flex-direction: row;
   align-items: flex-end;
 
+  &__effects {
+    white-space: nowrap;
+    z-index: 4;
+    position: absolute;
+    left: 14em;
+    bottom: .5em;
+    font-size: 1.25em;
+    font-weight: bold;
+
+    @media (max-width: 900px) {
+      font-size: .6em;
+      bottom: 17em;
+      left: 22em;
+    }
+  }
+
+  &__effect {
+    color: #90CAF9;
+    text-shadow: 1px 1px 1px #151515;
+    &--negative {
+      @extend .CharacterMeta__effect;
+      color: #EF9A9A;
+    }
+  }
+
   &__picture {
     z-index: 3;
     font-size: 2em;
@@ -20,6 +45,10 @@
 
     @media (max-width: 900px) {
       display: none;
+    }
+    @media (max-height: 700px) {
+      font-size: 1em;
+      transform: translateX(15em);
     }
   }
 

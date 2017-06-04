@@ -4,9 +4,9 @@ import abilities from 'modules/attack/rance';
 const baseStats = {
   atk: 7,
   def: 7,
-  spd: 4,
+  spd: 6,
   dex: 5,
-  int: 2,
+  int: 3,
   hp: 250,
 };
 

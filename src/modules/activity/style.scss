@@ -23,7 +23,14 @@
     }
     .Map {
       font-size: .6em;
-      left: 0;
+      bottom: -35em !important;
+      left: calc(50vw - 22em);
+    }
+  }
+
+  @media (max-height: 700px) {
+    .Map {
+      bottom: -48em;
     }
   }
 }

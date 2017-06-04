@@ -6,7 +6,7 @@ import Title from 'modules/title';
 import Activity from 'modules/activity';
 
 import Character from 'modules/character';
-import Music from 'modules/music';
+// import Music from 'modules/music';
 import Dialog from 'modules/dialog';
 
 import initGame from 'repository/init';
@@ -35,7 +35,7 @@ class Main extends Component {
     // window.setInterval(() =>
     //   this.state &&
     //   this.state.turn &&
-    //   window.localStorage.setItem('state', JSON.stringify(pick(this.state, 'turn', 'background', 'music', 'character', 'canAttack', 'status', 'map', 'order')),
+    //   window.localStorage.setItem('state', JSON.stringify(pick(this.state, 'turn', 'background', 'music', 'character', 'canAttack', 'status', 'map', 'order', 'effects')),
     // ), 10000);
 
     this.endIntro = () => endIntro(this);
@@ -50,7 +50,7 @@ class Main extends Component {
   }
   render() {
     return (<div className="Main">
-      <Music name={this.state.music} />
+      {/* <Music name={this.state.music} /> */}
       {this.state.turn === -1 && <Intro onEnd={this.endIntro} />}
       {this.state.turn === 0 && <Title onCharacterSelect={this.selectCharacter} />}
       {this.state.turn === 0 && this.state.character &&
@@ -64,7 +64,7 @@ class Main extends Component {
         meta={this.state}
         onMove={this.move}
         onAttackSelect={this.selectAttack}
-        onAttack={this.basicAttack}
+        onAttack={this.state.ability ? (x, y) => this.state.ability.do(this, x, y) : this.basicAttack}
         onTurnEnd={this.endTurn}
       />}
     </div>);

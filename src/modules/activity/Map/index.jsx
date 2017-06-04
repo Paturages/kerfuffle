@@ -7,7 +7,7 @@ import './style.scss';
 export default (props) => {
   const [characterX, characterY] = props.characters[props.currentCharacter].position;
   const [focusX, focusY] = props.focus || props.characters[props.currentCharacter].position;
-  const moves = props.attackRange || props.characters[props.currentCharacter].moves;
+  const moves = props.attackRange == null ? props.characters[props.currentCharacter].moves : props.attackRange;
   const characterPositions = Object.values(props.characters).reduce((obj, { position: p }) => Object.assign(obj, { [`${p[0]}.${p[1]}`]: 1 }), {});
   return (<div
     className="Map"
@@ -22,7 +22,7 @@ export default (props) => {
     <div
       className="Map__particle"
       style={{
-        left: `${((focusY + Math.random()) * 6) - 3}em`,
+        left: `${focusY * 6}em`,
         top: `${(focusX * 6.25)}em`,
       }}
     >
@@ -32,31 +32,36 @@ export default (props) => {
       {row.map(
         (cell, y) => {
           const isReachable = Math.abs(x - characterX) + Math.abs(y - characterY) <= moves;
-          const onClick = props.attackRange ? (
-            isReachable &&
+          const isCastable = Math.abs(x - characterX) + Math.abs(y - characterY) <= props.attackRange;
+          const canMoveTo = isReachable &&
             cell.type !== 'wall' &&
-            (x !== characterX || y !== characterY) &&
-            (() => props.onAttack(x, y))
+            !characterPositions[`${x}.${y}`]
+          ;
+          const canCast = (props.attackRange === 0 && x === characterX && y === characterY) || (
+            isCastable &&
+            cell.type !== 'wall'
+          );
+          const onClick = props.attackRange != null ? (
+            canCast && (() => props.onAttack(x, y))
           ) : (
-            isReachable &&
-            cell.type !== 'wall' &&
-            !characterPositions[`${x}.${y}`] &&
-            (() => props.onMove(x, y))
+            canMoveTo && (() => props.onMove(x, y))
           );
           return (
             <div
               role="button"
-              tabIndex={isReachable && cell.type !== 'wall' && !characterPositions[`${x}.${y}`] ? 0 : -1}
+              tabIndex={(
+                (props.attackRange == null && canMoveTo) ||
+                (props.attackRange != null && canCast)) ? 0 : -1}
               className={`Map__cell ${
                 cell.type === 'wall' ? 'Map__cell--wall' : ''
               } ${
                 characterPositions[`${x}.${y}`] ? 'Map__cell--character' : ''
               } ${
-                x === characterX && y === characterY ? 'Map__cell--self' : ''
+                x === characterX && y === characterY ? `Map__cell--self${props.attackRange === 0 ? '-castable' : ''}` : ''
               } ${
-                isReachable && !props.attackRange ? 'Map__cell--reachable' : ''
+                isReachable && props.attackRange == null ? 'Map__cell--reachable' : ''
               } ${
-                isReachable && props.attackRange && (x !== characterX || y !== characterY) ? 'Map__cell--attackable' : ''
+                isReachable && props.attackRange != null && (x !== characterX || y !== characterY) ? 'Map__cell--attackable' : ''
               }`}
               onClick={onClick}
             />

@@ -11,6 +11,7 @@ export default (self) => {
     canAttack: true,
     status: characterIds.reduce((obj, c) => Object.assign(obj, { [c]: Character[c].getBaseStats() }), {}),
     map: new Array(16).fill(new Array(16).fill('')).map(x => x.slice().map(() => ({}))),
+    effects: [],
   };
 
   // Random walls
@@ -40,7 +41,8 @@ export default (self) => {
     initialState.status[character] = Object.assign({
       mp: initialState.status[character].int * 10,
       moves: initialState.status[character].spd / 2 >> 0,
-      ult: 0,
+      ult: 200,
+      effects: [],
     }, initialState.status[character])
   ));
 

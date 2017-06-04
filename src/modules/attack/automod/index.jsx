@@ -9,7 +9,7 @@ export default [
     name: 'Flair',
     mp: 2,
     range: 5,
-    description: 'Flairing a foe lets you know more about them. Inflicts -1 DEF for 3 turns.',
+    description: 'Flairing a foe lets people know more about them. Inflicts -1 DEF for 2 turns.',
     do: flair,
   },
   {

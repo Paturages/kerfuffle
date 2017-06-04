@@ -6,7 +6,24 @@ import './style.scss';
 export default (props) => {
   const character = Character[props.character];
   const baseStats = character.getBaseStats();
+  let nbMoves = baseStats.spd / 2 >> 0;
+  if (!nbMoves) nbMoves = 1;
   return (<div className="CharacterMeta">
+    <div className="CharacterMeta__effects">
+      {props.status.effects.map((e) => {
+        const isNegative = (
+          ['atk', 'def', 'spd', 'dex', 'int'].indexOf(e.id) > -1 &&
+          e.value < 0
+        ) || ['disable', 'saya'].indexOf(e.id) > -1;
+        return (<div className={`CharacterMeta__effect${isNegative ? '--negative' : ''}`}>
+          {e.turns ? `[${e.turns} turns] ` : ''}
+          {typeof e.value === 'number' ? `${
+            e.value > 0 ? '+' : ''
+          }${e.value} ` : `${(e.value || '').toUpperCase()} `}
+          {e.id.toUpperCase()}
+        </div>);
+      })}
+    </div>
     <div className="CharacterMeta__picture" style={character.getBustStyle()} />
     <div className="CharacterMeta__vitals">
       <div className="CharacterMeta__vital CharacterMeta__hp">
@@ -20,7 +37,7 @@ export default (props) => {
         <span className="CharacterMeta__vital-value">{props.status.mp}</span>
       </div>
       <div className="CharacterMeta__vital CharacterMeta__moves">
-        <div className="CharacterMeta__vital-filler" style={{ width: `${100 * (props.status.moves / (baseStats.spd / 2 >> 0)) >> 0}%` }} />
+        <div className="CharacterMeta__vital-filler" style={{ width: `${100 * (props.status.moves > nbMoves ? 1 : props.status.moves / nbMoves) >> 0}%` }} />
         <span className="CharacterMeta__vital-name">MOVES</span>
         <span className="CharacterMeta__vital-value">{props.status.moves}</span>
       </div>

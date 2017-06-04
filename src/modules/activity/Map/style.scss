@@ -1,8 +1,8 @@
 .Map {
   position: absolute;
   overflow: visible;
-  bottom: -45em;
-  left: 25vw;
+  bottom: -40em;
+  left: calc(50vw - 20em);
 
   perspective: 150px;
   transition: transform .5s ease-in-out;
@@ -40,7 +40,7 @@
     &--reachable:not(.Map__cell--self) {
       background: rgba(#EF9A9A, .375) !important;
     }
-    &--attackable {
+    &--attackable, &--self-castable {
       background: rgba(#F44336, .25) !important;
     }
   }
@@ -103,7 +103,7 @@
         background: rgba(#4CAF50, .9) !important;
       }
     }
-    .Map__cell.Map__cell--attackable {
+    .Map__cell.Map__cell--attackable, .Map__cell.Map__cell--self-castable {
       cursor: pointer;
       background: rgba(#F44336, .5) !important;
       &:hover {
@@ -132,5 +132,10 @@
 
   &--magical {
     text-shadow: .1em .1em .1em #2196F3;
+  }
+
+  &.Damage--text {
+    font-size: 2em;
+    margin-left: -50%;
   }
 }

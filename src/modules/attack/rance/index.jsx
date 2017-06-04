@@ -33,7 +33,7 @@ export default [
     id: 'h',
     name: 'H',
     self: true,
-    description: "It's H time! +4 ATK against female characters for 3 turns (Saya does not count).",
+    description: "It's H time! Greatly increased damage against female characters for 3 turns (Saya does not count).",
     do: h,
   },
 ];

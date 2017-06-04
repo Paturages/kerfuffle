@@ -6,7 +6,7 @@ const baseStats = {
   def: 3,
   spd: 4,
   dex: 5,
-  int: 10,
+  int: 8,
   hp: 250,
 };
 
