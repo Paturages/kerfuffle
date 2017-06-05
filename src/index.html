@@ -11,9 +11,22 @@
       background: #151515;
     }
   </style>
+  <script type="text/javascript">
+    if (!Object.assign) {
+      var el = document.createElement('script');
+      el.async = false;
+      el.src = 'ie-polyfills.js';
+      el.type = 'text/javascript';
+      (document.getElementsByTagName('HEAD')[0] || document.body).appendChild(el);
+    }
+    var el2 = document.createElement('script');
+    el2.async = false;
+    el2.src = 'bundle.js';
+    el2.type = 'text/javascript';
+    (document.getElementsByTagName('HEAD')[0] || document.body).appendChild(el2);
+  </script>
 </head>
 <body>
-  <div id="root"></div>
-  <script src="bundle.js"></script>
+  <div id="root"><div style="color: #fafafa;">Loading...</div></div>
 </body>
 </html>

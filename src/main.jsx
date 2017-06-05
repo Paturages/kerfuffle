@@ -16,8 +16,7 @@ import './index.html';
 import './style.scss';
 
 const initialState = {
-  turn: 0,
-  character: 'automod',
+  turn: -1,
 };
 
 // const pick = (obj, ...props) => Object.assign({}, ...props.map(p => ({ [p]: obj[p] })));
@@ -45,8 +44,6 @@ class Main extends Component {
     this.basicAttack = (x, y) => Combat.basicAttack(this, x, y);
     this.endTurn = () => Combat.endTurn(this);
     this.initGame = () => initGame(this);
-
-    setTimeout(() => initGame(this));
   }
   render() {
     return (<div className="Main">

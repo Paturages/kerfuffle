@@ -41,7 +41,7 @@ export default (self) => {
     initialState.status[character] = Object.assign({
       mp: initialState.status[character].int * 10,
       moves: initialState.status[character].spd / 2 >> 0,
-      ult: 200,
+      ult: 0,
       effects: [],
     }, initialState.status[character])
   ));
