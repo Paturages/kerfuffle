@@ -16,6 +16,7 @@
 
   &__character-select {
     @extend .Main;
+    z-index: 10;
     animation: Main__fade-in 1s ease-in-out;
   }
 }
