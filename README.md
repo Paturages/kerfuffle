@@ -19,8 +19,6 @@ Latest node version (>= v8) is recommended. `npm install`, then `npm start` shou
 
 * Add loss condition (HP == 0) (*Yep. Characters basically can't die in the current version*)
 * Add win condition (Everyone has lost)
-* Add abilities, with range and effects
-* Add ultimate abilities
 * Add ability/ultimate dialogs
 * Add music
 * Add music change on ultimate
